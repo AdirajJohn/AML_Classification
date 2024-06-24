@@ -1,4 +1,4 @@
-#python script to print the logger information on console and save the logs in the running_logs
+#python script to print the logger information on console and save the logs in the running_logs.logs
 import os
 import sys
 import logging

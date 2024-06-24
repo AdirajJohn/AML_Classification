@@ -1,3 +1,4 @@
+#Running requirements.txt file will execute this setup.py file also.
 import setuptools
 
 with open("README.md","r",encoding="utf-8") as f:
