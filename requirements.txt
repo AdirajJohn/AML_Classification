@@ -1,0 +1,19 @@
+pandas
+gdown
+dvc
+mlflow==2.2.2
+notebook
+numpy
+matplotlib
+seaborn
+scikit-learn
+python-box==6.0.2
+pyYAML
+tqdm
+ensure==1.0.2
+joblib
+types-pyYAML
+scipy
+Flask
+Flask-Cors
+-e . #It will look for setup.py file for execution
