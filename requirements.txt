@@ -1,5 +1,6 @@
 pandas
 gdown
+boto3
 dvc
 mlflow==2.2.2
 notebook
