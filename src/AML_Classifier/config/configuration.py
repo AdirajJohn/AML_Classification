@@ -3,7 +3,7 @@
 from AML_Classifier.constants.__init__ import CONFIG_FILE_PATH,PARAMS_FILE_PATH
 from AML_Classifier.utils.common import read_yaml, create_directories
 
-from AML_Classifier.entity.config_entity import DataIngestionConfig
+from AML_Classifier.entity.config_entity import DataIngestionConfig,dataprocessingconfig
 
 class ConfigurationManager:
     def __init__(self,config_filepath = CONFIG_FILE_PATH,params_filepath = PARAMS_FILE_PATH):
@@ -29,3 +29,19 @@ class ConfigurationManager:
             download_path = config.download_path
         )
         return data_ingestion_config
+    
+    
+    def get_data_process_config(self) -> dataprocessingconfig:
+        config = self.config.data_prepocess
+        create_directories([config.root_dir])
+        downloaded_data = os.path.join(self.config.data_ingestion.root_dir,"data.csv")
+
+        data_process_config= dataprocessingconfig(
+            root_dir = Path(config.root_dir),
+            drop_feature=config.drop_feature,
+            categorical_feature = config.categorical_feature,
+            continuous_feature = config.continuous_feature,
+            downloaded_data=Path(downloaded_data),
+            save_processed_data=Path(config.save_processed_data)
+            )
+        return data_process_config

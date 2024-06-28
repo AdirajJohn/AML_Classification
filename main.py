@@ -12,3 +12,17 @@ try:
 except Exception as e:
     logger.exception(e)
     raise e     
+
+
+STAGE_NAME="Data_Preprocessing"
+
+try:
+    logger.info(f"**********************")
+    logger.info(f">>>>>>>>>>>>> stage {STAGE_NAME} started <<<<<<<<<<<<<<")
+    data_preprocess = DataProcessingPipeline()
+    data_preprocess.main()
+    logger.info(f">>>>>>>>>>>>>> stage {STAGE_NAME} completed <<<<<<<<<<<< \n\n X=================X")
+    
+except Exception as e:
+    logger.exception(e)
+    raise e

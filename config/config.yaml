@@ -8,3 +8,16 @@ data_ingestion:
     bucket_name: amaterasu
     aws_file: Transaction.csv
     download_path: artifacts/data_ingestion/data.csv
+
+
+data_prepocess:
+    root_dir: artifacts/model_data
+    drop_feature: ["Timestamp","Account","account"]
+    categorical_feature: ['receiving_currency', 'Payment_Currency', 'Payment Format',"is_laundering"]
+    continuous_feature: ['from_bank', 'to_bank', 'amount_received', 'amount_paid']
+    save_processed_data: artifacts/model_data/processed_data.csv
+
+prepare_base_model:
+    root_dir: artifacts/prepare_base_model
+    data: artifacts/data_ingestion
+    base_model_path: artifacts/prepare_base_model/base_model.plk
