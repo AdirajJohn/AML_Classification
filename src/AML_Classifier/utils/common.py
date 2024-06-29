@@ -57,3 +57,18 @@ def create_directories(path_to_directories: list, verbose=True):
         os.makedirs(path, exist_ok=True)
         if verbose:
             logger.info(f"created directory at: {path}")
+
+
+
+@ensure_annotations
+def save_json(data: dict, path: Path):
+    """
+    Saves the provided data as a JSON file with the specified filename.
+    
+    Parameters:
+    data (dict or list): The data to be saved as JSON.
+    filename (str): The name of the file to save the data in.
+    """
+    with open(path, 'w') as json_file:
+        json.dump(data, json_file, indent=4)
+    print(f"JSON data has been written to {path}")

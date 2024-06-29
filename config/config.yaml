@@ -21,3 +21,10 @@ prepare_base_model:
     root_dir: artifacts/prepare_base_model
     base_model_path: artifacts/prepare_base_model/base_model.plk
 
+
+eval_model:
+    root_dir: artifacts/eval
+    path_of_model: artifacts/prepare_base_model/base_model.plk
+    training_data: artifacts/model_data/processed_data.csv
+    mlflow_url: https://dagshub.com/adirajjohn2000/AML_Classification.mlflow
+

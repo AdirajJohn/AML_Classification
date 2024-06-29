@@ -32,3 +32,11 @@ class PrepareBaseModelConfig:
     params_min_sample_leaf: int
     params_max_features: str
     params_class_weight: str
+    
+
+@dataclass(frozen=True)
+class EvaluationConfig:
+    path_of_model: Path
+    training_data: Path
+    all_params: dict
+    mlflow_url: str

@@ -5,7 +5,7 @@ from AML_Classifier.utils.common import read_yaml, create_directories
 import os
 from pathlib import Path
 
-from AML_Classifier.entity.config_entity import DataIngestionConfig,dataprocessingconfig,PrepareBaseModelConfig
+from AML_Classifier.entity.config_entity import DataIngestionConfig,dataprocessingconfig,PrepareBaseModelConfig, EvaluationConfig
 
 class ConfigurationManager:
     def __init__(self,config_filepath = CONFIG_FILE_PATH,params_filepath = PARAMS_FILE_PATH):
@@ -69,3 +69,18 @@ class ConfigurationManager:
         )
 
         return prepare_base_model_config
+    
+
+
+    def get_evaluation_config(self) -> EvaluationConfig:
+        config = self.config.eval_model
+
+
+        eval_config = EvaluationConfig(
+            path_of_model=config.path_of_model,
+            training_data=config.training_data,
+            mlflow_url=config.mlflow_url,
+            all_params=self.params
+
+        )
+        return eval_config
