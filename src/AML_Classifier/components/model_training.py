@@ -35,26 +35,18 @@ class PrepareBaseModel:
             }
         
         # Initialize the classifier
-        model = RandomForestClassifier()
+        model = RandomForestClassifier(**param_grid)
 
-        # Initialize GridSearchCV(HYPERPARAMETER TUNING)
-        grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=2, n_jobs=-1, verbose=2)
-        # Fit the model
-        grid_search.fit(X_train, y_train)
-        # Print the best parameters
-        print("Best Parameters:", grid_search.best_params_)
-
-        # Evaluate the best model on the test set
-        tuned_model=RandomForestClassifier(**grid_search.best_params_)
-        tuned_model.fit(X_train,y_train)
+        #Train the model
+        model.fit(X_train,y_train)
 
         #Save the ML model
         with open(self.config.base_model_path,"wb") as file:
-            pickle.dump(tuned_model, file)
+            pickle.dump(model, file)
 
         
         # Prediction Value
-        y_pred=tuned_model.predict(X_test)
+        y_pred=model.predict(X_test)
         #eval accuracy
         accuracy=metrics.accuracy_score(y_pred,y_test)
         print("Test Set Accuracy:", accuracy)

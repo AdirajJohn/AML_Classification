@@ -26,9 +26,9 @@ class PrepareBaseModelConfig:
     root_dir: Path
     data_dir: Path
     base_model_path: Path
-    params_n_estimators: list
-    params_max_depth: list
-    params_min_sample_split: list
-    params_min_sample_leaf: list
-    params_max_features: list
+    params_n_estimators: int
+    params_max_depth: int
+    params_min_sample_split: int
+    params_min_sample_leaf: int
+    params_max_features: str
     params_class_weight: str

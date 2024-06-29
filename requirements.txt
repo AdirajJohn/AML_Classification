@@ -2,6 +2,7 @@ pandas
 gdown
 boto3
 dvc
+dagshub
 mlflow==2.2.2
 notebook
 numpy
