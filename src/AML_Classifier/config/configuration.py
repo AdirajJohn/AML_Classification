@@ -2,8 +2,10 @@
 
 from AML_Classifier.constants.__init__ import CONFIG_FILE_PATH,PARAMS_FILE_PATH
 from AML_Classifier.utils.common import read_yaml, create_directories
+import os
+from pathlib import Path
 
-from AML_Classifier.entity.config_entity import DataIngestionConfig,dataprocessingconfig
+from AML_Classifier.entity.config_entity import DataIngestionConfig,dataprocessingconfig,PrepareBaseModelConfig
 
 class ConfigurationManager:
     def __init__(self,config_filepath = CONFIG_FILE_PATH,params_filepath = PARAMS_FILE_PATH):
@@ -45,3 +47,25 @@ class ConfigurationManager:
             save_processed_data=Path(config.save_processed_data)
             )
         return data_process_config
+    
+
+
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+        config = self.config.prepare_base_model
+        training_data = Path(self.config.data_prepocess.save_processed_data)
+
+        create_directories([config.root_dir])
+
+        prepare_base_model_config = PrepareBaseModelConfig(
+            root_dir = Path(config.root_dir),
+            base_model_path = Path(config.base_model_path),
+            data_dir=Path(training_data),
+            params_n_estimators = self.params.n_estimators,
+            params_max_depth = self.params.max_depth,
+            params_min_sample_split = self.params.min_samples_split,
+            params_min_sample_leaf = self.params.min_samples_leaf,
+            params_max_features = self.params.max_features,
+            params_class_weight = self.params.class_weight
+        )
+
+        return prepare_base_model_config

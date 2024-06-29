@@ -19,3 +19,16 @@ class dataprocessingconfig:
     continuous_feature: list
     save_processed_data: Path
     downloaded_data: Path
+
+
+@dataclass(frozen=True)
+class PrepareBaseModelConfig:
+    root_dir: Path
+    data_dir: Path
+    base_model_path: Path
+    params_n_estimators: list
+    params_max_depth: list
+    params_min_sample_split: list
+    params_min_sample_leaf: list
+    params_max_features: list
+    params_class_weight: str
