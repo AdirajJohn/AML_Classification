@@ -3,6 +3,7 @@
 from AML_Classifier.constants.__init__ import CONFIG_FILE_PATH,PARAMS_FILE_PATH
 from AML_Classifier.utils.common import read_yaml, create_directories
 import os
+import yaml
 from pathlib import Path
 
 from AML_Classifier.entity.config_entity import DataIngestionConfig,dataprocessingconfig,PrepareBaseModelConfig, EvaluationConfig
@@ -15,12 +16,15 @@ class ConfigurationManager:
         create_directories([self.config.artifacts_root])
 
 
-
+    
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         config = self.config.data_ingestion
 
         #Create file path to store the dataset
         create_directories([config.root_dir])
+        #Load the AWs connection info
+        with open('secrets.yaml', 'r') as file:
+            aws = yaml.safe_load(file)
 
         data_ingestion_config= DataIngestionConfig(
             root_dir = config.root_dir,
@@ -28,7 +32,9 @@ class ConfigurationManager:
             region = config.region,
             bucket_name = config.bucket_name,
             aws_file = config.aws_file,
-            download_path = config.download_path
+            download_path = config.download_path,
+            aws_access_key_id = aws["aws_access_key_id"],
+            aws_secret_access_key= aws['aws_secret_access_key']
         )
         return data_ingestion_config
     

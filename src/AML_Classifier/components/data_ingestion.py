@@ -6,7 +6,6 @@ import pandas as pd
 from AML_Classifier.entity.config_entity import DataIngestionConfig
 
 #Compontent
-
 class DataIngestion:
     def __init__(self,config: DataIngestionConfig):
         self.config = config    
@@ -17,7 +16,9 @@ class DataIngestion:
             #Create the s3 object
             s3=boto3.resource(
                 service_name=self.config.service,
-                region_name=self.config.region
+                region_name=self.config.region,
+                aws_access_key_id=self.config.aws_access_key_id,
+                aws_secret_access_key=self.config.aws_secret_access_key
                 )
             
             #download the data

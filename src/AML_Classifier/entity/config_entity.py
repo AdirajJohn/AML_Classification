@@ -10,6 +10,8 @@ class DataIngestionConfig:
     bucket_name: str
     aws_file: str
     download_path: Path
+    aws_access_key_id: str
+    aws_secret_access_key: str
 
 @dataclass(frozen=True)# To ensure that we give correct type of input as specified for the data ingestion process.
 class dataprocessingconfig:

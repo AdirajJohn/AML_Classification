@@ -4,17 +4,18 @@ from AML_Classifier.pipeline.stage_02_data_preprocessing import  DataProcessingP
 from AML_Classifier.pipeline.stage_03_model_training import ModelTrainingPipeline
 from AML_Classifier.pipeline.stage_04_model_evaluation_with_MLflow import ModelEvaluationPipeline
 
-"""STAGE_NAME="Data Ingestion stage"
+STAGE_NAME="Data Ingestion stage"
 
 try:
     logger.info(f">>>>>>> Stage {STAGE_NAME} started <<<<<<<")
     obj = DataIngestionTrainingPipeline()
     obj.main()
-    logger.info(f">>>>>>> Stage {STAGE_NAME} Completed <<<<<<< \n x=========================================x")
+    logger.info(f">>>>>>> Stage {STAGE_NAME} Completed <<<<<<< \n x=================x")
     
 except Exception as e:
     logger.exception(e)
     raise e     
+
 
 
 STAGE_NAME="Data_Preprocessing"
@@ -43,7 +44,7 @@ try:
 except Exception as e:
     logger.exception(e)
     raise e
-"""
+
 
 
 STAGE_NAME="Model evaluation"

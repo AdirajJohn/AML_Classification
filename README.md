@@ -11,3 +11,4 @@ NOTE: Modular Coding Workflow
 6. Update the pipeline
 7. Update the main .py
 8. Update the dvc.yaml # Update after completing all the pipeline needed for the project
+Update secrets.yaml[optional]
