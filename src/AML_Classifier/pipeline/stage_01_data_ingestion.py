@@ -18,7 +18,7 @@ class DataIngestionTrainingPipeline:
         data_ingestion.download_file()
 
 
-if __name__=="main":
+if __name__=="__main__":
     try:
         logger.info(f">>>>>>> Stage {STAGE_NAME} started <<<<<<<")
         obj = DataIngestionTrainingPipeline()

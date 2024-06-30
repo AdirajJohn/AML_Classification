@@ -1,0 +1,96 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src\AML_Classifier\pipeline\stage_01_data_ingestion.py
+    deps:
+    - path: config\config.yaml
+      hash: md5
+      md5: 2543e6dd1af17a09ef183be079d3913a
+      size: 1068
+    - path: secrets.yaml
+      hash: md5
+      md5: 5bcef4ece62fc09e82050f423876e451
+      size: 110
+    - path: src\AML_Classifier\pipeline\stage_01_data_ingestion.py
+      hash: md5
+      md5: 8757dcb8765776056005db92cc48ce7f
+      size: 893
+    outs:
+    - path: artifacts\data_ingestion
+      hash: md5
+      md5: 22cd4c5cdc4ddcdd189c28dd0df4c027.dir
+      size: 942787
+      nfiles: 1
+  data_preprocessing:
+    cmd: python src\AML_Classifier\pipeline\stage_02_data_preprocessing.py
+    deps:
+    - path: artifacts\data_ingestion\data.csv
+      hash: md5
+      md5: 76da7fd8529228d928155f6ef9dbfd5a
+      size: 942787
+    - path: config\config.yaml
+      hash: md5
+      md5: 2543e6dd1af17a09ef183be079d3913a
+      size: 1068
+    - path: src\AML_Classifier\pipeline\stage_02_data_preprocessing.py
+      hash: md5
+      md5: 50163bacb98e1559a81e9096ff7c411c
+      size: 931
+    outs:
+    - path: artifacts\model_data\processed_data.csv
+      hash: md5
+      md5: 98beccb78d39c8e0166f5f0960f3ccf0
+      size: 911293
+  model_training:
+    cmd: python src/AML_Classifier/pipeline/stage_03_model_training.py
+    deps:
+    - path: artifacts/model_data
+      hash: md5
+      md5: 7f4642f3a6e9f6b5d578cafb67a9c446.dir
+      size: 911293
+      nfiles: 1
+    - path: config/config.yaml
+      hash: md5
+      md5: 2543e6dd1af17a09ef183be079d3913a
+      size: 1068
+    - path: params.yaml
+      hash: md5
+      md5: 5f4961503c3504cb31690eff1def11df
+      size: 123
+    - path: src/AML_Classifier/pipeline/stage_03_model_training.py
+      hash: md5
+      md5: 695c3cc8b683d96403f0d2f1162e5a4f
+      size: 1004
+    params:
+      params.yaml:
+        class_weight: balanced
+        max_depth: 20
+        max_features: sqrt
+        min_samples_leaf: 1
+        min_samples_split: 2
+        n_estimators: 300
+    outs:
+    - path: artifacts/prepare_base_model/base_model.plk
+      hash: md5
+      md5: c59a85bcfc367f11c9138dbe772090e5
+      size: 30047665
+  model_evaluation:
+    cmd: python src/AML_Classifier/pipeline/stage_04_model_evaluation.py
+    deps:
+    - path: artifacts/model_data
+      hash: md5
+      md5: 7f4642f3a6e9f6b5d578cafb67a9c446.dir
+      size: 911293
+      nfiles: 1
+    - path: artifacts/prepare_base_model/base_model.plk
+      hash: md5
+      md5: c59a85bcfc367f11c9138dbe772090e5
+      size: 30047665
+    - path: config/config.yaml
+      hash: md5
+      md5: 2543e6dd1af17a09ef183be079d3913a
+      size: 1068
+    - path: src/AML_Classifier/pipeline/stage_04_model_evaluation.py
+      hash: md5
+      md5: be628892d8cfeb304a8cf3d3059b9b9e
+      size: 930

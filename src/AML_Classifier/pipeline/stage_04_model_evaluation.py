@@ -23,7 +23,7 @@ class ModelEvaluationPipeline:
         
 
 
-if __name__=="main":
+if __name__=="__main__":
     try:
         logger.info(f">>>>>>> Stage {STAGE_NAME} started <<<<<<<")
         obj = ModelEvaluationPipeline()

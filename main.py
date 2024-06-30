@@ -2,7 +2,7 @@ from AML_Classifier import logger
 from AML_Classifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from AML_Classifier.pipeline.stage_02_data_preprocessing import  DataProcessingPipeline
 from AML_Classifier.pipeline.stage_03_model_training import ModelTrainingPipeline
-from AML_Classifier.pipeline.stage_04_model_evaluation_with_MLflow import ModelEvaluationPipeline
+from AML_Classifier.pipeline.stage_04_model_evaluation import ModelEvaluationPipeline
 
 STAGE_NAME="Data Ingestion stage"
 

@@ -1,0 +1,45 @@
+stages:
+   data_ingestion:
+    cmd: python src\AML_Classifier\pipeline\stage_01_data_ingestion.py
+    deps:
+      - src\AML_Classifier\pipeline\stage_01_data_ingestion.py
+      - config\config.yaml
+      - secrets.yaml
+    outs:
+      - artifacts\data_ingestion
+
+   data_preprocessing:
+    cmd: python src\AML_Classifier\pipeline\stage_02_data_preprocessing.py
+    deps:
+      - src\AML_Classifier\pipeline\stage_02_data_preprocessing.py
+      - config\config.yaml
+      - artifacts\data_ingestion\data.csv
+    outs:
+      - artifacts\model_data\processed_data.csv
+
+   model_training:
+    cmd: python src/AML_Classifier/pipeline/stage_03_model_training.py
+    deps:
+      - src/AML_Classifier/pipeline/stage_03_model_training.py
+      - config/config.yaml
+      - params.yaml
+      - artifacts/model_data
+    params:
+      - n_estimators
+      - max_depth
+      - min_samples_split
+      - min_samples_leaf
+      - max_features
+      - class_weight
+    outs:
+      - artifacts/prepare_base_model/base_model.plk
+
+   model_evaluation:
+    cmd: python src/AML_Classifier/pipeline/stage_04_model_evaluation.py
+    deps:
+      - src/AML_Classifier/pipeline/stage_04_model_evaluation.py
+      - config/config.yaml
+      - artifacts/model_data
+      - artifacts/prepare_base_model/base_model.plk
+
+

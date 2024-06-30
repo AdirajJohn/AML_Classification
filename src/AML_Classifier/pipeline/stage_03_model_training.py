@@ -21,7 +21,7 @@ class ModelTrainingPipeline:
             raise e
 
 
-if __name__=="main":
+if __name__=="__main__":
     try:
         logger.info(f">>>>>>> Stage {STAGE_NAME} started <<<<<<<")
         obj = ModelTrainingPipeline()
