@@ -17,26 +17,22 @@ class ConfigurationManager:
 
 
     
-    def get_data_ingestion_config(self) -> DataIngestionConfig:
-        config = self.config.data_ingestion
-
-        #Create file path to store the dataset
+    def get_data_process_config(self) -> dataprocessingconfig:
+        config = self.config.data_prepocess
         create_directories([config.root_dir])
-        #Load the AWs connection info
-        with open('secrets.yaml', 'r') as file:
-            aws = yaml.safe_load(file)
+        downloaded_data = os.path.join(self.config.data_ingestion.root_dir,"data.csv")
 
-        data_ingestion_config= DataIngestionConfig(
-            root_dir = config.root_dir,
-            service = config.service,
-            region = config.region,
-            bucket_name = config.bucket_name,
-            aws_file = config.aws_file,
-            download_path = config.download_path,
-            aws_access_key_id = aws["aws_access_key_id"],
-            aws_secret_access_key= aws['aws_secret_access_key']
-        )
-        return data_ingestion_config
+        data_process_config= dataprocessingconfig(
+            root_dir = Path(config.root_dir),
+            drop_feature=config.drop_feature,
+            categorical_feature = config.categorical_feature,
+            continuous_feature = config.continuous_feature,
+            downloaded_data=Path(downloaded_data),
+            save_processed_data=Path(config.save_processed_data),
+            save_label_encoder  = Path(config.save_label_encoder),
+            save_scaler_obj = Path(config.save_scaler_obj)
+            )
+        return data_process_config
     
     
     def get_data_process_config(self) -> dataprocessingconfig:
@@ -50,7 +46,9 @@ class ConfigurationManager:
             categorical_feature = config.categorical_feature,
             continuous_feature = config.continuous_feature,
             downloaded_data=Path(downloaded_data),
-            save_processed_data=Path(config.save_processed_data)
+            save_processed_data=Path(config.save_processed_data),
+            save_label_encoder  = Path(config.save_label_encoder),
+            save_scaler_obj = Path(config.save_scaler_obj)
             )
         return data_process_config
     

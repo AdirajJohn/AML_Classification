@@ -20,6 +20,8 @@ class dataprocessingconfig:
     categorical_feature: list
     continuous_feature: list
     save_processed_data: Path
+    save_label_encoder: Path
+    save_scaler_obj: Path
     downloaded_data: Path
 
 

@@ -16,15 +16,17 @@ data_prepocess:
     categorical_feature: ['receiving_currency', 'Payment_Currency', 'Payment Format',"is_laundering"]
     continuous_feature: ['from_bank', 'to_bank', 'amount_received', 'amount_paid']
     save_processed_data: artifacts/model_data/processed_data.csv
+    save_label_encoder: artifacts/model_data/
+    save_scaler_obj: artifacts/model_data/scaler_obj.pkl
 
 prepare_base_model:
     root_dir: artifacts/prepare_base_model
-    base_model_path: artifacts/prepare_base_model/base_model.plk
+    base_model_path: artifacts/prepare_base_model/base_model.pkl
 
 
 eval_model:
     root_dir: artifacts/eval
-    path_of_model: artifacts/prepare_base_model/base_model.plk
+    path_of_model: artifacts/prepare_base_model/base_model.pkl
     training_data: artifacts/model_data/processed_data.csv
     mlflow_url: https://dagshub.com/adirajjohn2000/AML_Classification.mlflow
 

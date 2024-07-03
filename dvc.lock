@@ -5,8 +5,8 @@ stages:
     deps:
     - path: config\config.yaml
       hash: md5
-      md5: 2543e6dd1af17a09ef183be079d3913a
-      size: 1068
+      md5: 63484d6eb4d82cdec5bfc800e35f5873
+      size: 1187
     - path: secrets.yaml
       hash: md5
       md5: 5bcef4ece62fc09e82050f423876e451
