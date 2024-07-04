@@ -48,14 +48,14 @@ class Evaluation:
 
 
         #MLflow Integration
-        dagshub.init(repo_owner='adirajjohn2000', repo_name='AML_Classification', mlflow=True)
-        mlflow.set_registry_uri(self.config.mlflow_url)
-        tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+        #dagshub.init(repo_owner='adirajjohn2000', repo_name='AML_Classification', mlflow=True)
+        #mlflow.set_registry_uri(self.config.mlflow_url)
+        #tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
-        with mlflow.start_run():
-            mlflow.log_params(self.config.all_params)
-            mlflow.log_metrics(save_score)
-            if tracking_url_type_store != "file":
-                mlflow.sklearn.log_model(model,"model",registered_model_name="RandomForest")
-            else:
-                mlflow.sklearn.log_model(model,"model")
+        #with mlflow.start_run():
+        #    mlflow.log_params(self.config.all_params)
+        #    mlflow.log_metrics(save_score)
+        #    if tracking_url_type_store != "file":
+        #        mlflow.sklearn.log_model(model,"model",registered_model_name="RandomForest")
+        #    else:
+        #        mlflow.sklearn.log_model(model,"model")
